@@ -38,16 +38,17 @@ public class Weapon : MonoBehaviour
             // Enable the weapon and the box collider, and set a timer to disable the weapon.
             EnableWeapon();
             boxCollider.enabled = true;
-            Invoke("DisableWeapon", attackDuration);
+            Invoke(nameof(DisableWeapon), attackDuration);
 
             // Set a timer to reset the weapon's attack ability.
-            Invoke("AttackReset", 60f / attackRate);
+            Invoke(nameof(AttackReset), 60f / attackRate);
         }
     }
 
     // Disable the weapon by hiding the sprite and disabling the box collider.
     public void DisableWeapon()
     {
+        Debug.Log("Disabled");
         sr.enabled = false;
         boxCollider.enabled = false;
     }
@@ -55,7 +56,9 @@ public class Weapon : MonoBehaviour
     // Enable the weapon by showing the sprite, enabling the box collider, and disabling the attack ability.
     public void EnableWeapon()
     {
+        Debug.Log("Enabled");
         canAttack = false;
+        Debug.Log("CanAttack: " + canAttack);
         sr.enabled = true;
         boxCollider.enabled = true;
     }
@@ -63,6 +66,7 @@ public class Weapon : MonoBehaviour
     // Reset the weapon's attack ability.
     public void AttackReset()
     {
+        Debug.Log("Resetting Attack");
         canAttack = true;
     }
 
